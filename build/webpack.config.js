@@ -3,6 +3,8 @@ const cleanPlugin = require('clean-webpack-plugin')
 const htmlPlugin = require('html-webpack-plugin')
 
 const mode = 'development'
+const { entry, htmlWebpackPlugins } = require('./entry')
+console.log(entry);
 
 function resolve (d) {
   return path.resolve(__dirname, d)
@@ -10,18 +12,15 @@ function resolve (d) {
 
 module.exports = {
   mode,
-  entry: {
-    app: './src/entries/app.js',
-    entry: './src/entries/entry.js'
-  },
+  entry,
   devtool: mode === 'development' ? 'none' : 'none',
   resolve: {
     alias: {
-      '@': resolve('src')
+      '@': resolve('../src')
     }
   },
   output: {
-    path: resolve('dist'),
+    path: resolve('../dist'),
     filename: '[name].bundle.js'
   },
   module: {
@@ -80,13 +79,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new cleanPlugin(['dist']),
-    new htmlPlugin({
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-      },
-      template: './index.html',
-      chunks: ['app']
-    })
+    new cleanPlugin([resolve('../dist')], {
+      root: resolve('../')
+    }),
+    ...htmlWebpackPlugins
   ]
 }
