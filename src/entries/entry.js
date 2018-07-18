@@ -1,5 +1,7 @@
-import _ from 'lodash'
+import { findIndex } from 'lodash'
 import '../assets/less/base.less'
+import { flat } from '@/utils/util.js'
+flat(1, 2, 3)
 
 const users = [
   { 'user': 'barney',  'active': false },
@@ -7,17 +9,17 @@ const users = [
   { 'user': 'pebbles', 'active': true }
 ];
 
-console.log(_.findIndex(users, function(o) { return o.user == 'barney'; }));
+console.log(findIndex(users, function(o) { return o.user == 'barney'; }));
 // => 0
 
 // The `_.matches` iteratee shorthand.
-console.log(_.findIndex(users, { 'user': 'fred', 'active': false }));
+console.log(findIndex(users, { 'user': 'fred', 'active': false }));
 // => 1
 
 // The `_.matchesProperty` iteratee shorthand.
-console.log(_.findIndex(users, ['active', false]));
+console.log(findIndex(users, ['active', false]));
 // => 0
 
 // The `_.property` iteratee shorthand.
-console.log(_.findIndex(users, 'active'));
+console.log(findIndex(users, 'active'));
 // => 2

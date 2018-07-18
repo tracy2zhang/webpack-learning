@@ -1,4 +1,4 @@
-import { flat } from '../utils/util'
+import { flat, testTreeShaking } from '../utils/util'
 import rawText from '../utils/raw.txt'
 import '@/vendor/semantic-ui/semantic.css'
 import img404 from '@/assets/images/404.png'
@@ -13,3 +13,4 @@ const image = new Image()
 image.src = img404
 div.appendChild(image)
 document.querySelector('#app').appendChild(div)
+// testTreeShaking()
