@@ -1,6 +1,4 @@
 const path = require('path')
-// const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 function resolve (d) {
   return path.resolve(__dirname, d)
@@ -43,14 +41,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    // extract css into its own file
-    // new ExtractTextPlugin({
-    //   filename: 'css/[name].[md5:contenthash:hex].css'
-    // })
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css'
-    })
-  ]
+  }
 }

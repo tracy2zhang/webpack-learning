@@ -1,6 +1,7 @@
 const path = require('path')
 const env = 'production'
 const cleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const merge = require('webpack-merge')
 const utils = require('./utils')
 const baseConfig = require('./webpack.base.config')
@@ -16,6 +17,10 @@ const webpackConfig = merge(baseConfig, {
   plugins: [
     new cleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, '..')
+    }),
+    // extract css into its own file
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css'
     }),
     ...htmlWebpackPlugins
   ]

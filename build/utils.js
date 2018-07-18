@@ -1,4 +1,3 @@
-// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const fallback = 'style-loader'
 
@@ -6,6 +5,7 @@ exports.styleLoaders = env => {
   const generateLoaders = (type, options) => {
     const sourceMap = { sourceMap: env !== 'production' }
     const loaders = [
+      'css-hot-loader',
       {
         loader: MiniCssExtractPlugin.loader,
         options: {
@@ -30,16 +30,12 @@ exports.styleLoaders = env => {
       })
     }
     return loaders
-    // return ExtractTextPlugin.extract({
-    //   use: loaders,
-    //   fallback,
-    //   publicPath: '../'
-    // })
   }
   return ['css', 'less'].map(type => {
+    const loaders = generateLoaders(type)
     return {
       test: new RegExp(`\\.${type}$`),
-      use: generateLoaders(type)
+      use: loaders
     }
   })
 }
