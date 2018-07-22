@@ -1,7 +1,10 @@
 import { findIndex } from 'lodash'
 import '../assets/less/base.less'
 import { flat } from '@/utils/util.js'
-flat(1, 2, 3)
+const arr = flat(1, 2, 3)
+const obj = { a: 1, b: 2 }
+console.log([...arr, 4, 5])
+console.log({ ...obj })
 
 const users = [
   { 'user': 'barney',  'active': false },

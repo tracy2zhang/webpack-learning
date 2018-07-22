@@ -21,6 +21,19 @@ module.exports = {
         use: 'raw-loader'
       },
       {
+        test: /\.js$/,
+        // include: path.resolve(__dirname, '../src'),
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+            cacheDirectory: true,
+            plugins: ['lodash', 'transform-runtime', require('babel-plugin-transform-object-rest-spread')]
+          }
+        }
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         use: {
           loader: 'url-loader',

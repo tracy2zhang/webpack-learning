@@ -1,6 +1,6 @@
 import { flat, testTreeShaking } from '../utils/util'
 import rawText from '../utils/raw.txt'
-import '@/vendor/semantic-ui/semantic.css'
+// import '@/vendor/semantic-ui/semantic.css'
 import img404 from '@/assets/images/404.png'
 
 const flatedArr = flat(1, [2, 3, 4], 5, 6)
