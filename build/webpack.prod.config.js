@@ -23,7 +23,13 @@ const webpackConfig = merge(baseConfig, {
       filename: 'css/[name].[contenthash].css'
     }),
     ...htmlWebpackPlugins
-  ]
+  ],
+  optimization: {
+    minimize: false,
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 })
 
 module.exports = webpackConfig
