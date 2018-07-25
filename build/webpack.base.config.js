@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: resolve('../dist'),
-    filename: 'js/[name].[hash].bundle.js'
+    filename: 'js/[name].[chunkhash].bundle.js'
   },
   module: {
     rules: [

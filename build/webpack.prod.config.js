@@ -25,9 +25,21 @@ const webpackConfig = merge(baseConfig, {
     ...htmlWebpackPlugins
   ],
   optimization: {
-    minimize: false,
+    minimize: true,
     splitChunks: {
-      chunks: 'all'
+      minSize: 1,
+      maxSize: 0,
+      chunks: 'all',
+      automaticNameDelimiter: '-',
+      cacheGroups: {
+        vendors: {
+          test: /node_modules/,
+          priority: -10,
+          minSize: 30000,
+          minChunks: 1,
+          name: true
+        }
+      }
     }
   }
 })

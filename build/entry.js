@@ -17,7 +17,11 @@ module.exports = env => {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       },
       template: './index.html',
-      chunks: [chunkname],
+      // chunks: [chunkname],
+      chunks: function (chunk) {
+        return chunk.split('-').includes(chunkname)
+      },
+      chunksSortMode: 'dependency',
       minify: env === 'production'
     }))
   })
