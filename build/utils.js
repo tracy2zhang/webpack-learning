@@ -5,7 +5,6 @@ exports.styleLoaders = env => {
   const generateLoaders = (type, options) => {
     const sourceMap = { sourceMap: env !== 'production' }
     const loaders = [
-      'css-hot-loader',
       {
         loader: MiniCssExtractPlugin.loader,
         options: {
@@ -23,6 +22,9 @@ exports.styleLoaders = env => {
       },
       'postcss-loader'
     ]
+    if (env === 'development') {
+      loaders.unshift('css-hot-loader')
+    }
     if (type !== 'css') {
       loaders.push({
         loader: `${type}-loader`,

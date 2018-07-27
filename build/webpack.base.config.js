@@ -12,7 +12,8 @@ module.exports = {
   },
   output: {
     path: resolve('../dist'),
-    filename: 'js/[name].[chunkhash].bundle.js'
+    filename: 'js/[name].[contenthash].js',
+    chunkFilename: 'js/[name].[contenthash].js'
   },
   module: {
     rules: [
@@ -27,7 +28,13 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
+            presets: [
+              [
+                'env', {
+                  modules: false
+                }
+              ]
+            ],
             cacheDirectory: true,
             plugins: ['lodash', 'transform-runtime', require('babel-plugin-transform-object-rest-spread')]
           }

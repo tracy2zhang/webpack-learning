@@ -27,7 +27,7 @@ const webpackConfig = merge(baseConfig, {
   optimization: {
     minimize: true,
     splitChunks: {
-      minSize: 1,
+      minSize: 30000,
       maxSize: 0,
       chunks: 'all',
       automaticNameDelimiter: '-',
@@ -37,10 +37,15 @@ const webpackConfig = merge(baseConfig, {
           priority: -10,
           minSize: 30000,
           minChunks: 1,
+          maxInitialRequests: 3,
           name: true
         }
       }
-    }
+    },
+    runtimeChunk: {
+      name: 'manifest'
+    },
+    noEmitOnErrors: true
   }
 })
 

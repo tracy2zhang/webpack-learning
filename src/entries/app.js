@@ -1,4 +1,5 @@
-import { flat, testTreeShaking } from '../utils/util'
+import { flat, testTreeShaking } from '@/utils/util.js'
+require('../assets/less/base.less')
 // import { findIndex, debounce } from 'lodash/findIndex'
 import moment from 'moment'
 import rawText from '../utils/raw.txt'
@@ -17,4 +18,3 @@ const image = new Image()
 image.src = img404
 div.appendChild(image)
 document.querySelector('#app').appendChild(div)
-// testTreeShaking()

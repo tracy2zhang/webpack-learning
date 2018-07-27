@@ -19,7 +19,7 @@ module.exports = env => {
       template: './index.html',
       // chunks: [chunkname],
       chunks: function (chunk) {
-        return chunk.split('-').includes(chunkname)
+        return chunk.split('-').includes(chunkname) || chunk === 'manifest'
       },
       chunksSortMode: 'dependency',
       minify: env === 'production'
