@@ -1,7 +1,10 @@
 const path = require('path')
+const webpack = require('webpack')
 const env = 'production'
 const cleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ManifestPlugin = require('webpack-manifest-plugin')
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 const merge = require('webpack-merge')
 const utils = require('./utils')
 const baseConfig = require('./webpack.base.config')
@@ -18,11 +21,19 @@ const webpackConfig = merge(baseConfig, {
     new cleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, '..')
     }),
+    /* config.plugin('hash-module-ids') */
+    new webpack.HashedModuleIdsPlugin(
+      {
+        hashDigest: 'hex'
+      }
+    ),
     // extract css into its own file
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css'
     }),
-    ...htmlWebpackPlugins
+    ...htmlWebpackPlugins,
+    new InlineManifestWebpackPlugin('manifest'),
+    new ManifestPlugin()
   ],
   optimization: {
     minimize: true,
@@ -33,17 +44,17 @@ const webpackConfig = merge(baseConfig, {
       automaticNameDelimiter: '-',
       cacheGroups: {
         vendors: {
-          test: /node_modules/,
+          test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          minSize: 30000,
-          minChunks: 1,
-          maxInitialRequests: 3,
-          name: true
+          // name: true
+          reuseExistingChunk: true
         }
       }
     },
     runtimeChunk: {
-      name: 'manifest'
+      name () {
+        return 'manifest'
+      }
     },
     noEmitOnErrors: true
   }

@@ -90,10 +90,3 @@ console.log(users);console.log(users);console.log(users);console.log(users);
 console.log(users);console.log(users);console.log(users);console.log(users);
 console.log(users);console.log(users);console.log(users);console.log(users);
 console.log(users);console.log(users);console.log(users);console.log(users);
-
-
-const div = document.createElement('div')
-const image = new Image()
-image.src = img404
-div.appendChild(image)
-document.querySelector('#app').appendChild(div)
