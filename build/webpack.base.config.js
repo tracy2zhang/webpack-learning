@@ -7,7 +7,7 @@ function resolve (d) {
 module.exports = {
   resolve: {
     alias: {
-      '@': resolve('../src')
+      'src': resolve('../src')
     }
   },
   output: {
@@ -30,13 +30,19 @@ module.exports = {
           options: {
             presets: [
               [
-                'env', {
-                  modules: false
+                '@babel/preset-env', {
+                  'modules': false
                 }
               ]
             ],
             cacheDirectory: true,
-            plugins: ['lodash', 'transform-runtime', require('babel-plugin-transform-object-rest-spread')]
+            plugins: [
+              'lodash',
+              '@babel/plugin-transform-runtime',
+              '@babel/plugin-syntax-object-rest-spread',
+              '@babel/plugin-syntax-dynamic-import',
+              '@babel/plugin-proposal-class-properties'
+            ]
           }
         }
       },
