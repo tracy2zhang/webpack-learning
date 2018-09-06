@@ -7,7 +7,7 @@ function resolve (d) {
 module.exports = {
   resolve: {
     alias: {
-      'src': resolve('../src')
+      '@': resolve('../src')
     }
   },
   output: {
@@ -28,21 +28,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              [
-                '@babel/preset-env', {
-                  'modules': false
-                }
-              ]
-            ],
-            cacheDirectory: true,
-            plugins: [
-              'lodash',
-              '@babel/plugin-transform-runtime',
-              '@babel/plugin-syntax-object-rest-spread',
-              '@babel/plugin-syntax-dynamic-import',
-              '@babel/plugin-proposal-class-properties'
-            ]
+            cacheDirectory: true
           }
         }
       },

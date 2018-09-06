@@ -54,7 +54,7 @@ const webpackConfig = merge(baseConfig, {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          // name: true
+          // name: true,
           reuseExistingChunk: true
         }
       }
