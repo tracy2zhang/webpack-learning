@@ -19,9 +19,13 @@ const image = new Image()
 image.src = img404
 div.appendChild(image)
 document.querySelector('#app').appendChild(div)
-// div.addEventListener('click', e => {
-//   import(/* webpackChunkName: "log" */ '@/utils/util.js').then(module => {
-//     const log = module.default
-//     log.error('something went wrong!!!')
-//   })
-// })
+div.addEventListener('click', e => {
+  import(
+    /* webpackChunkName: "log" */
+    /* webpackPrefetch: true */
+    '@/utils/log.js'
+  ).then(module => {
+    const log = module.default
+    log.error('something went wrong!!!')
+  })
+})

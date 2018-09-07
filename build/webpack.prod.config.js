@@ -34,7 +34,7 @@ const webpackConfig = merge(baseConfig, {
     }),
     ...htmlWebpackPlugins,
     // inline the manifest chunk to html, same name with runtimeChunk
-    new InlineManifestWebpackPlugin('manifest'),
+    // new InlineManifestWebpackPlugin('manifest'),
     // generate a manifest.json file in your root output directory
     // with a mapping of all source file names to their corresponding output file
     new ManifestPlugin(),
@@ -59,11 +59,11 @@ const webpackConfig = merge(baseConfig, {
         }
       }
     },
-    runtimeChunk: {
-      name () {
-        return 'manifest'
-      }
-    },
+    // runtimeChunk: {
+    //   name () {
+    //     return 'manifest'
+    //   }
+    // },
     noEmitOnErrors: true
   }
 })
