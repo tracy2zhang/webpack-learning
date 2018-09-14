@@ -23,11 +23,14 @@ const webpackConfig = merge(baseConfig, {
       root: path.resolve(__dirname, '..')
     }),
     /* config.plugin('hash-module-ids') */
-    new webpack.HashedModuleIdsPlugin(
-      {
-        hashDigest: 'hex'
-      }
-    ),
+    new webpack.HashedModuleIdsPlugin({
+      // 替换掉base64，减少一丢丢时间
+      hashDigest: 'hex'
+    }),
+    // 稳定chunkid
+    new webpack.NamedChunksPlugin(chunk => {
+      return chunk.name || Array.from(chunk.modulesIterable, m => m.id).join("_")
+    }),
     // extract css into its own file
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css'
@@ -40,6 +43,7 @@ const webpackConfig = merge(baseConfig, {
     new ManifestPlugin(),
     // analysis the bundles
     new BundleAnalyzerPlugin({
+      // 禁止自动打开浏览器
       openAnalyzer: false
     })
   ],
@@ -54,15 +58,16 @@ const webpackConfig = merge(baseConfig, {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          // name: true,
+          name (module) {
+            console.log(module)
+            return 'vendors'
+          },
           reuseExistingChunk: true
         }
       }
     },
     // runtimeChunk: {
-    //   name () {
-    //     return 'manifest'
-    //   }
+    //   name: entrypoint => `manifest-${entrypoint.name}`
     // },
     noEmitOnErrors: true
   }
