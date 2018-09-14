@@ -1,4 +1,5 @@
 const path = require('path')
+require('./html-webpack-plugin-hack')
 
 function resolve (d) {
   return path.resolve(__dirname, d)

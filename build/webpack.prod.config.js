@@ -42,10 +42,10 @@ const webpackConfig = merge(baseConfig, {
     // with a mapping of all source file names to their corresponding output file
     new ManifestPlugin(),
     // analysis the bundles
-    new BundleAnalyzerPlugin({
-      // 禁止自动打开浏览器
-      openAnalyzer: false
-    })
+    // new BundleAnalyzerPlugin({
+    //   // 禁止自动打开浏览器
+    //   openAnalyzer: false
+    // })
   ],
   optimization: {
     minimize: true,
@@ -58,10 +58,7 @@ const webpackConfig = merge(baseConfig, {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          name (module) {
-            console.log(module)
-            return 'vendors'
-          },
+          name: true,
           reuseExistingChunk: true
         }
       }
